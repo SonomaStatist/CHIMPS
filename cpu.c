@@ -15,7 +15,6 @@ static unsigned npc;
 // reads the next instruction from the text segment of memory
 // sets the state of the instruction output lines
 static inline void read_inst();
-
 // instruction outputs
 static uint8_t op;
 static uint8_t rs;
@@ -55,13 +54,6 @@ static uint32_t read_dat2;
 
 // sets the state of the control lines
 static inline void control();
-
-// the main alu for for the cpu
-static inline void main_alu();
-
-// computes the value of the address to jump to
-static inline void jump_alu();
-
 // defines the control lines
 static bool reg_dst;
 static bool jump;
@@ -73,6 +65,12 @@ static bool write_reg;
 static bool alu_src;
 static bool reg_data;
 
+// the main alu for for the cpu
+static inline void main_alu();
+
+// computes the value of the address to jump to
+static inline void jump_alu();
+
 // defines all the mutexes
 // sets the state of the write register
 static inline void wr_mux();
@@ -80,9 +78,7 @@ static inline void wr_mux();
 static inline void mem_mux();
 
 bool init_cpu(unsigned len, uint32_t *program) {
-    reg_file.zero = 0;
-    reg_file.reg[0] = 0;
-    return 0;
+    return true;
 }
 
 int step(){
