@@ -56,14 +56,10 @@ static uint32_t read_dat2;
 // sets the state of the control lines
 static inline void control();
 
-// sets the state of the write register
-static inline void wr_mux();
-
 // the main alu for for the cpu
 static inline void main_alu();
 
-
-// computes the 
+// computes the value of the address to jump to
 static inline void jump_alu();
 
 // defines the control lines
@@ -73,9 +69,15 @@ static bool branch;
 static bool mem_read;
 static bool memto_red;
 static bool alu_op;
-static bool mem_write;
+static bool write_reg;
 static bool alu_src;
-static bool reg_write;
+static bool reg_data;
+
+// defines all the mutexes
+// sets the state of the write register
+static inline void wr_mux();
+// sets the state of the write data line
+static inline void mem_mux();
 
 bool init_cpu(unsigned len, uint32_t *program) {
     reg_file.zero = 0;
